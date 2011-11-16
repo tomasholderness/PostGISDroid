@@ -1,0 +1,27 @@
+# PostGISDroid - upload android location to PostGIS database
+'''
+PostGISDroid - script to upload android location to PostGIS database.
+
+Released under BSD license
+
+Copyright Tom Holderness 2011.
+
+version 1.0
+'''
+
+import dbapi
+#droid = android.Android()
+
+conn = dbapi.connect(host="192.168.0.8", user="postgres", password="Apollo11", database='android')
+cursor = conn.cursor()
+print "cursor connected"
+a = "INSERT INTO droidtrack (id, provider, accuracy, altitude, speed, the_geom) VALUES (6, 'network', 47, 0, 0, ST_GeomFromText('POINT(-1.61479802 54.98103355)',4326));"
+cursor.execute(a)
+conn.commit()
+#data = cursor.fetchone()
+print "got data"
+cursor.close()
+conn.close()
+
+
+exit(0)
