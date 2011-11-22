@@ -13,7 +13,7 @@ __version__ = "1.0"
 __author__ = "Tom Holderness"
 
 import android, time
-import droidpg8001.dbapi    # The pg8000 module
+import droidpg8000.dbapi    # The pg8000 module
  
 droid = android.Android()
 # Start a partial wakelock so script is active when screen is off.
