@@ -35,20 +35,20 @@ while 1:
    cursor = conn.cursor()
    print "Connection database succesful."
 	
-      # Test for gps based location only (avoiding 'network' based location).
-      if 'gps' in loc[1]:
- 
-      # Create an SQL INSERT statement, using well known text for geometry.
-         datastr = "INSERT INTO droidtrack (id, provider, accuracy, altitude, \
-speed, the_geom) VALUES (%s, %s, %s, %s, %s, ST_GeomFromText('POINT(%s %s)',4326));" % \
-(str(loc[0]),"'"+str(loc[1]['gps']['provider'])+"'",str(loc[1]['gps']['accuracy']),\
-str(loc[1]['gps']['altitude']),str(loc[1]['gps']['speed']),\
-str(loc[1]['gps']['longitude']),str(loc[1]['gps']['latitude']))
-
-      # Execute, commit and print data.
-         cursor.execute(datastr)  
-         conn.commit()
-         print datastr
+   # Test for gps based location only (avoiding 'network' based location).
+   if 'gps' in loc[1]:
+	
+	# Create an SQL INSERT statement, using well known text for geometry.
+	datastr = "INSERT INTO droidtrack (id, provider, accuracy, altitude, \
+	speed, the_geom) VALUES (%s, %s, %s, %s, %s, ST_GeomFromText('POINT(%s %s)',4326));" % \
+	(str(loc[0]),"'"+str(loc[1]['gps']['provider'])+"'",str(loc[1]['gps']['accuracy']),\
+	str(loc[1]['gps']['altitude']),str(loc[1]['gps']['speed']),\
+	str(loc[1]['gps']['longitude']),str(loc[1]['gps']['latitude']))
+	
+	# Execute, commit and print data.
+	cursor.execute(datastr)  
+	conn.commit()
+	print datastr
 
 # Log location at 60s intervals
 time.sleep(60)
